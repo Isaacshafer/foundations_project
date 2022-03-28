@@ -9,6 +9,14 @@
      background-color: black;
 }
 
+.game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    padding: 1%;
+}
+
 #game-board {
     background-color: #ccc;
     height: 100vmin;

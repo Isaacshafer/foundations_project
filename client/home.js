@@ -1,4 +1,7 @@
 
+
+
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector('.form__message')
 
@@ -33,14 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
         createAccountForm.classList.add('form--hidden')
     })
 
-    loginForm.addEventListener('submit', e => {
-        e.preventDefault()
-        // login functionality
-        setFormMessage(loginForm, "error", "Invalid username/password combination")
-    })
+    // loginForm.addEventListener('submit', e => {
+    //     e.preventDefault()
+    //     // login functionality
+    //     setFormMessage(loginForm, "error", "Invalid username/password combination")
+    // })
+
+    
+
     document.querySelectorAll('.form__input').forEach(inputElement => {
         inputElement.addEventListener('blur', e => {
-            if (e.target.id === 'signupUsername' && e.target.value.length > 0 && e.target.value.length < 6) {
+            if (e.target.id === 'signupUsername' && e.target.value.length > 0 && e.target.value.length < 4) {
                 setInputError(inputElement, "Username must be at least 6 characters in length")
             }
         })
@@ -49,3 +55,80 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 })
+const loginForm = document.querySelector('#login')
+const createAccountForm = document.getElementById('createAccount')
+
+
+createAccountForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let username = document.getElementById('signupUsername')
+        let password1 = document.getElementById('signupPassword1')
+        let password2 = document.getElementById('signupPassword2')
+        if(password1.value !== password2.value){
+            setInputError(password1, 'Passwords must match')
+            createAccountForm.addEventListener('input', () => {
+                clearInputError(createAccountForm)
+            })
+            }
+            else
+            {
+
+                let bodyObj = {
+                username: username.value,
+                 password1: password1.value
+               }
+                
+                axios.post('http://localhost:5050/register', bodyObj)
+                .then(res => {
+                    console.log(res.data)
+                    createAccountForm.classList.add('form--hidden')
+                    loginForm.classList.remove('form--hidden')
+                    setFormMessage(loginForm, 'success', 'Account registered!')
+                })
+            }
+    })
+loginForm.addEventListener('submit', e => {
+    e.preventDefault()
+    let username = document.getElementById('loginUsername')
+    let password = document.getElementById('loginPassword')
+    let bodyObj = {
+        username: username.value,
+        password: password.value
+    }
+    axios.post('http://localhost:5050/login', bodyObj)
+    .then(res => {
+        console.log(res.data)
+        if(res.status === 200){
+            location.assign('./game.html')
+        }else if(res.status === 400){
+            setFormMessage(loginForm, 'error', 'Incorrect username/password')
+        }
+    })
+})
+
+
+
+
+
+
+
+// login/register
+// let submit = document.getElementById('register-button')
+
+
+// function register(body) {
+//     axios.post('http://localhost:5050/users', body)
+//     .then(res => {
+//         console.log(res.data)
+//     })
+// }
+
+// function sumbitHandler (e) {
+//     e.preventDefault()
+//     let username = document.getElementById('signupUsername').value
+//     let password = document.getElementById('signupPassword').value
+//     console.log(username, password)
+//     let bodyObj = { username, password}
+//     register(bodyObj)
+// }
+// submit.addEventListener('click', register)
