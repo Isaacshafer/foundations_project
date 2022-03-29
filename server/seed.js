@@ -19,8 +19,11 @@ module.exports = {
             user_id serial primary key,
             username varchar(100),
             password varchar(100),
-            highscore integer
+            highscore integer,
+            global_highscore integer
         );
+        insert into users (global_highscore)
+        values (0)
         `).then(()=> {
             console.log('DB seeded')
             res.sendStatus(200)

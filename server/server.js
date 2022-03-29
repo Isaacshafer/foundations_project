@@ -5,15 +5,18 @@ const cors = require('cors')
 const path = require('path')
 const{SERVER_PORT} = process.env
 
-const bcrypt = require('bcrypt')
 app.use(express.json())
 app.use(cors())
-const {register, login} = require('./controller')
+const {register, login, score, getCurrentHighscore, getGlobalHighscore} = require('./controller')
 const {seed} = require('./seed')
+const { default: axios } = require('axios')
 app.use(express.static(path.join(__dirname, '../client')))
 
 app.post('/seed', seed)
+app.get('/currenthighscore', getCurrentHighscore)
+app.get('/globalhighscore', getGlobalHighscore)
 app.post('/register', register)
 app.post('/login', login)
+app.post('/score', score)
 
 app.listen(SERVER_PORT, () => {console.log(`server running on ${SERVER_PORT}`)})

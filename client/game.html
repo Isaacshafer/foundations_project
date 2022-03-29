@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
     <link rel="stylesheet" href="main.css">
     <script src="main.js" defer type="module"></script>
 
@@ -16,9 +17,10 @@
 
 <body class="game-body">
     <div class="game-header">
-        <a href="./home.html">home</a>
-        <h3 id="current-score">score:</h3>
-        <h3>high score: 0</h3>
+        <a href="./home.html">Log Out</a>
+        <h3 id="current-score">Score:</h3>
+        <h3 id="highscore">high score: 0</h3>
+        <h3 id="global-highscore">All time high score:</h3>
 
     </div>
     <div id="game-board"></div>

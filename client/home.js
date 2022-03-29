@@ -80,10 +80,14 @@ createAccountForm.addEventListener('submit', (e) => {
                 
                 axios.post('http://localhost:5050/register', bodyObj)
                 .then(res => {
+                    if(res.status === 200){
                     console.log(res.data)
                     createAccountForm.classList.add('form--hidden')
                     loginForm.classList.remove('form--hidden')
                     setFormMessage(loginForm, 'success', 'Account registered!')
+                }else if(res.status === 201){
+                    setFormMessage(createAccountForm, 'error', 'Username unavailable')
+                }
                 })
             }
     })
@@ -112,23 +116,3 @@ loginForm.addEventListener('submit', e => {
 
 
 
-// login/register
-// let submit = document.getElementById('register-button')
-
-
-// function register(body) {
-//     axios.post('http://localhost:5050/users', body)
-//     .then(res => {
-//         console.log(res.data)
-//     })
-// }
-
-// function sumbitHandler (e) {
-//     e.preventDefault()
-//     let username = document.getElementById('signupUsername').value
-//     let password = document.getElementById('signupPassword').value
-//     console.log(username, password)
-//     let bodyObj = { username, password}
-//     register(bodyObj)
-// }
-// submit.addEventListener('click', register)

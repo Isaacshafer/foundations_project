@@ -1,19 +1,19 @@
 import {update as updateSnake, draw as drawSnake, SNAKE_SPEED, getSnakeHead, snakeIntersection, snakeBody} from './snake.js'
 import { outsideGrid } from './grid.js'
 import {update as updateFood, draw as drawFood} from './food.js'
+// import axios from 'axios's
 
+axios.get('http://localhost:5050/currenthighscore').then(res => {
+    console.log(res.data)
+    let highscore = res.data
+    document.getElementById('highscore').textContent = `High score: ${highscore}`
+})
+axios.get('http://localhost:5050/globalhighscore').then(res => {
+    console.log(res.data)
+    let globalHighscore = res.data.globalHighscore
+    let user = res.data.user
+    document.getElementById(`global-highscore`).textContent = `All time high score: ${user}: ${globalHighscore}`
 
-require('dotenv').config()
-const {CONNECTION_STRING} = process.env
-const Sequelize = require('sequelize')
-
-const sequelize = new Sequelize(CONNECTION_STRING, {
-    dialect: 'postgres',
-    dialectOptions: {
-        ssl: {
-            rejectUnauthorized: false
-        }
-    }
 })
 
 
@@ -21,22 +21,18 @@ const gameBoard = document.getElementById('game-board')
 let lastRenderTime = 0
 let gameOver = false
 let main = (currentTime) => {
+   
     if (gameOver) {
-        let score = snakeBody
-        sequelize.query(`
-        select * from users where user_id = ${userId}
-        `)
-        if(dbRes[0].highscore < score){
-            sequelize.query(`
-            update users
-            set highscore = ${score}
-            where  user_id = ${userId}
-            `)
+        let bodyObj = {
+            score: snakeBody.length
         }
+        axios.post('http://localhost:5050/score', bodyObj)
+        
        if (confirm('You lost, Press ok to restart.')) {
         //    window.location = '/client/game.html'
         location.reload()
-       }
+        }
+       
        return
     }
     window.requestAnimationFrame(main)
@@ -63,3 +59,6 @@ function draw () {
 function checkDeath() {
     gameOver = outsideGrid(getSnakeHead()) || snakeIntersection()
 }
+
+
+// https://github.com/asdvalenzuela/moodmap
