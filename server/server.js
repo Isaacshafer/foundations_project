@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-// const{SERVER_PORT} = process.env
+const port = process.env.PORT || 5050
 
 app.use(express.json())
 app.use(cors())
@@ -11,6 +11,7 @@ const {register, login, score, getCurrentHighscore, getGlobalHighscore} = requir
 const {seed} = require('./seed')
 
 app.use(express.static(path.join(__dirname, '../client')))
+app.use(express.static(path.join(__dirname, '../server')))
 
 app.post('/seed', seed)
 app.get('/currenthighscore', getCurrentHighscore)
@@ -19,6 +20,5 @@ app.post('/register', register)
 app.post('/login', login)
 app.post('/score', score)
 
-const port = process.env.PORT || 5050
 
 app.listen(port, () => {console.log(`server running on ${port}`)})
