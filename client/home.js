@@ -78,7 +78,7 @@ createAccountForm.addEventListener('submit', (e) => {
                  password1: password1.value
                }
                 
-                axios.post('http://localhost:5050/register', bodyObj)
+                axios.post('/register', bodyObj)
                 .then(res => {
                     if(res.status === 200){
                     console.log(res.data)
@@ -99,7 +99,7 @@ loginForm.addEventListener('submit', e => {
         username: username.value,
         password: password.value
     }
-    axios.post('http://localhost:5050/login', bodyObj)
+    axios.post('/login', bodyObj)
     .then(res => {
         console.log(res.data)
         if(res.status === 200){
