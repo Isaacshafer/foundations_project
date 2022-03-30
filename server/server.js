@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-const{SERVER_PORT} = process.env
+// const{SERVER_PORT} = process.env
 
 app.use(express.json())
 app.use(cors())
@@ -19,4 +19,6 @@ app.post('/register', register)
 app.post('/login', login)
 app.post('/score', score)
 
-app.listen(SERVER_PORT, () => {console.log(`server running on ${SERVER_PORT}`)})
+const port = process.env.PORT || 5050
+
+app.listen(port, () => {console.log(`server running on ${port}`)})
