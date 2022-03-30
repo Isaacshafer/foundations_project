@@ -19,7 +19,7 @@ app.get('/', function(req,res){
 app.get('/styles', function(req,res){
     res.sendFile(path.join(__dirname, '../client/main.css'))
 })
-app.get('/game', function(req,res){
+app.get('/', function(req,res){
     res.sendFile(path.join(__dirname, '../client/game.html'))
 })
 app.get('/homejs', function(req,res){
