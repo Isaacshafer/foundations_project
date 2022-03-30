@@ -52,7 +52,7 @@ function equalPositions(pos1, pos2) {
 
 function addSegments() {
     for (let i = 0; i < newSegments; i++){
-        document.getElementById('current-score').innerHTML = `Score: ${snakeBody.length+1}`
+        document.getElementById('current-score').innerHTML = `Score: ${snakeBody.length}`
         snakeBody.push({...snakeBody[snakeBody.length - 1]})
     }
     newSegments = 0
