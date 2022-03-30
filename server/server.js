@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(cors())
 const {register, login, score, getCurrentHighscore, getGlobalHighscore} = require('./controller')
 const {seed} = require('./seed')
-const { default: axios } = require('axios')
+
 app.use(express.static(path.join(__dirname, '../client')))
 
 app.post('/seed', seed)
