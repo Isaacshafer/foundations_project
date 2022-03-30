@@ -62,12 +62,15 @@
     align-items: center;
     justify-content: center;
     font-size: 18px;
+    display: flex;
+    flex-direction: column;
 }
 .home-div {
-    /* color:white; */
+    color:white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 200%;
 }
 
 body img {
