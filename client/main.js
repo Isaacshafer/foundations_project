@@ -4,12 +4,12 @@ import {update as updateFood, draw as drawFood} from './food.js'
 // import axios from 'axios's
 
 axios.get('/currenthighscore').then(res => {
-    console.log(res.data)
+    // console.log(res.data)
     let highscore = res.data
     document.getElementById('highscore').textContent = `High score: ${highscore}`
 })
 axios.get('/globalhighscore').then(res => {
-    console.log(res.data)
+    // console.log(res.data)
     let globalHighscore = res.data.globalHighscore
     let user = res.data.user
     document.getElementById(`global-highscore`).textContent = `All time high score: ${user}: ${globalHighscore}`
