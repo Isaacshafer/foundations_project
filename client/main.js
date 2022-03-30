@@ -3,12 +3,12 @@ import { outsideGrid } from './grid.js'
 import {update as updateFood, draw as drawFood} from './food.js'
 // import axios from 'axios's
 
-axios.get('http://localhost:5050/currenthighscore').then(res => {
+axios.get('/currenthighscore').then(res => {
     console.log(res.data)
     let highscore = res.data
     document.getElementById('highscore').textContent = `High score: ${highscore}`
 })
-axios.get('http://localhost:5050/globalhighscore').then(res => {
+axios.get('/globalhighscore').then(res => {
     console.log(res.data)
     let globalHighscore = res.data.globalHighscore
     let user = res.data.user
@@ -26,7 +26,7 @@ let main = (currentTime) => {
         let bodyObj = {
             score: snakeBody.length
         }
-        axios.post('http://localhost:5050/score', bodyObj)
+        axios.post('/score', bodyObj)
         
        if (confirm('You lost, Press ok to restart.')) {
         //    window.location = '/client/game.html'
