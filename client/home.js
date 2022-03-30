@@ -81,7 +81,7 @@ createAccountForm.addEventListener('submit', (e) => {
                 axios.post('/register', bodyObj)
                 .then(res => {
                     if(res.status === 200){
-                    console.log(res.data)
+                    // console.log(res.data)
                     createAccountForm.classList.add('form--hidden')
                     loginForm.classList.remove('form--hidden')
                     setFormMessage(loginForm, 'success', 'Account registered!')
@@ -101,7 +101,7 @@ loginForm.addEventListener('submit', e => {
     }
     axios.post('/login', bodyObj)
     .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         if(res.status === 200){
             location.assign('./game.html')
         }else if(res.status === 400){
