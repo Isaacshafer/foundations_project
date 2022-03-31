@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.form__input').forEach(inputElement => {
         inputElement.addEventListener('blur', e => {
             if (e.target.id === 'signupUsername' && e.target.value.length > 0 && e.target.value.length < 4) {
-                setInputError(inputElement, "Username must be at least 6 characters in length")
+                setInputError(inputElement, "Username must be at least 4 characters in length")
             }
         })
         inputElement.addEventListener('input', e => {
@@ -61,6 +61,7 @@ const createAccountForm = document.getElementById('createAccount')
 
 createAccountForm.addEventListener('submit', (e) => {
         e.preventDefault()
+        
         let username = document.getElementById('signupUsername')
         let password1 = document.getElementById('signupPassword1')
         let password2 = document.getElementById('signupPassword2')
