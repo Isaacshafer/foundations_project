@@ -28,7 +28,6 @@ export function draw (gameBoard) {
 
 export function expandSnake(amount) {
     newSegments += amount
-    SNAKE_SPEED += 0.1
 
 }
 
