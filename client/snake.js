@@ -1,5 +1,5 @@
 import { getInputDirection } from "./input.js"
-export const SNAKE_SPEED = 10
+export const SNAKE_SPEED = 5
 const snakeBody = [{x: 10, y: 11}]
 let newSegments = 0
 
@@ -54,6 +54,7 @@ function addSegments() {
     for (let i = 0; i < newSegments; i++){
         document.getElementById('current-score').innerHTML = `Score: ${snakeBody.length}`
         snakeBody.push({...snakeBody[snakeBody.length - 1]})
+        SNAKE_SPEED += 0.1
     }
     newSegments = 0
 }
