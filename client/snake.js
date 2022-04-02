@@ -28,6 +28,8 @@ export function draw (gameBoard) {
 
 export function expandSnake(amount) {
     newSegments += amount
+    SNAKE_SPEED += 0.1
+
 }
 
 export function onSnake(position, { ignoreHead = false } = {}) {
@@ -55,7 +57,6 @@ function addSegments() {
         document.getElementById('current-score').innerHTML = `Score: ${snakeBody.length}`
         snakeBody.push({...snakeBody[snakeBody.length - 1]})
     }
-    SNAKE_SPEED += 0.1
     newSegments = 0
 }
 export{snakeBody}
