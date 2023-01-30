@@ -1,5 +1,5 @@
-const bcryptjs = require('bcryptjs')
 require('dotenv').config()
+const bcryptjs = require('bcryptjs')
 const {CONNECTION_STRING} = process.env
 const Sequelize = require('sequelize')
 
